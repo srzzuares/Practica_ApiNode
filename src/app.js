@@ -5,6 +5,32 @@ const morgan = require('morgan')
 const APP = express()
 require('dotenv').config()
 
+//Path
+const path = require('path')
+//Swagger
+const swaggerUI = require('swagger-ui-express')
+const swaggerJsDoc = require('swagger-jsdoc')
+//Object Swagger
+const swaggerSpec = {
+    definition: {
+        openapi: "3.0.0",
+        info: {
+            title: "Api-Node JS, Mongo y Swagger",
+            version: "1.0.0"
+        },
+        servers: [
+            {
+                url: "http://localhost:3030"
+            }
+        ]
+    },
+    apis: [
+        `${path.join(__dirname, './routes/obras.Routes.js')}`
+    ]
+}
+//Midleware
+APP.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)))
+
 //Settings
 APP.set('PORT', process.env.PORT || 3000)
 APP.set('runServer', (req, res) => {
