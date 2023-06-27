@@ -120,7 +120,7 @@ rooteable.post('/crear', OCLL.guardarObras)
 
 /**
  *  @swagger
- *  /eliminar/{idOb}:
+ *  /actualizar/{idOb}:
  *  put:
  *      summary: actualizar una obra
  *      tags: [User]
